@@ -24,9 +24,19 @@ RCT_EXPORT_MODULE(SplashScreen)
     rootView.loadingViewFadeDuration = 0;
     UIImageView *view = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     view.image = [UIImage imageNamed:@"splash"];
-    
+
     [[NSNotificationCenter defaultCenter] removeObserver:rootView  name:RCTContentDidAppearNotification object:rootView];
-    
+
+    [rootView setLoadingView:view];
+}
+
++ (void)showView:(UIView *)view onRootView:(RCTRootView *)rv {
+    rootView = rv;
+    rootView.loadingViewFadeDelay = 0.1;
+    rootView.loadingViewFadeDuration = 0.1;
+
+    [[NSNotificationCenter defaultCenter] removeObserver:rootView  name:RCTContentDidAppearNotification object:rootView];
+
     [rootView setLoadingView:view];
 }
 
